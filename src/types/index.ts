@@ -281,6 +281,8 @@ export type DevvitToWebviewMessage =
   | { type: 'RULES_UPDATE'; data: WorkflowRule[] }
   | { type: 'WATCHLIST_UPDATE'; data: WatchlistEntry[] }
   | { type: 'AUDIT_UPDATE'; data: AuditLogEntry[] }
+  | { type: 'MODMAIL_UPDATE'; data: any[] }
+  | { type: 'MODMAIL_DRAFT_RESULT'; data: { body: string; category: string; sentiment: string } }
   | { type: 'ACTION_RESULT'; data: { success: boolean; itemId: string; action: string; error?: string } }
   | { type: 'TOAST'; data: { message: string; level: 'success' | 'error' | 'info' } };
 
@@ -297,10 +299,12 @@ export type WebviewToDevvitMessage =
   | { type: 'REMOVE_WATCHLIST'; data: { username: string } }
   | { type: 'MARK_FALSE_POSITIVE'; data: { itemId: string } }
   | { type: 'EXPORT_AUDIT_LOG' }
-  | { type: 'CHANGE_PERIOD'; data: { period: AnalyticsPeriod } };
+  | { type: 'CHANGE_PERIOD'; data: { period: AnalyticsPeriod } }
+  | { type: 'GENERATE_MODMAIL_DRAFT'; data: { senderName: string; subject: string; body: string } }
+  | { type: 'SEND_MODMAIL_REPLY'; data: { conversationId: string; body: string } };
 
 /** Dashboard tab identifiers. */
-export type DashboardTab = 'queue' | 'analytics' | 'rules' | 'watchlist' | 'audit';
+export type DashboardTab = 'queue' | 'analytics' | 'rules' | 'watchlist' | 'audit' | 'modmail';
 
 /** Initial payload sent to the webview on load. */
 export type DashboardInitData = {

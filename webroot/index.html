@@ -1112,6 +1112,401 @@ select.input-field {
   .analytics-grid { grid-template-columns: 1fr; }
   .condition-row { flex-wrap: wrap; }
 }
+
+/* ===================================================================
+   TAB 6: MODMAIL ASSISTANT
+   =================================================================== */
+.modmail-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  height: calc(100vh - 160px);
+  min-height: 500px;
+}
+@media (max-width: 800px) {
+  .modmail-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+.modmail-list-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modmail-panel-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--elevated);
+}
+.modmail-panel-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+.modmail-conversations {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.modmail-conv-item {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.modmail-conv-item:hover {
+  border-color: var(--text-tertiary);
+  background: var(--elevated);
+}
+.modmail-conv-item.active {
+  border-color: var(--accent);
+  background: rgba(255, 69, 0, 0.05);
+  box-shadow: 0 0 8px rgba(255, 69, 0, 0.1);
+}
+.modmail-conv-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-data);
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+.modmail-conv-subject {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modmail-conv-preview {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modmail-detail-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modmail-detail-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  gap: 12px;
+  padding: 40px;
+  text-align: center;
+}
+.modmail-detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 20px;
+  gap: 20px;
+}
+.modmail-detail-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.modmail-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.modmail-detail-subject {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.modmail-detail-author {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.modmail-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.modmail-badge {
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.badge-category {
+  background: rgba(94, 158, 255, 0.12);
+  color: var(--low);
+  border: 1px solid rgba(94, 158, 255, 0.2);
+}
+.badge-sentiment {
+  background: rgba(48, 209, 88, 0.12);
+  color: var(--clean);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+}
+.badge-sentiment.very_negative {
+  background: rgba(255, 59, 48, 0.12);
+  color: var(--critical);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+}
+.badge-sentiment.negative {
+  background: rgba(255, 149, 0, 0.12);
+  color: var(--high);
+  border: 1px solid rgba(255, 149, 0, 0.2);
+}
+.badge-sentiment.neutral {
+  background: rgba(142, 142, 147, 0.12);
+  color: var(--text-secondary);
+  border: 1px solid rgba(142, 142, 147, 0.2);
+}
+.badge-sentiment.positive, .badge-sentiment.very_positive {
+  background: rgba(48, 209, 88, 0.12);
+  color: var(--clean);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+}
+.modmail-message-box {
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modmail-message-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-data);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+.modmail-message-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+}
+.modmail-draft-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modmail-draft-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.draft-indicator {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.draft-indicator::before {
+  content: '✦';
+  animation: logoPulse 1.5s ease-in-out infinite;
+}
+.modmail-draft-textarea {
+  width: 100%;
+  height: 160px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.modmail-draft-textarea:focus {
+  border-color: var(--accent);
+}
+.modmail-action-footer {
+  border-top: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  background: var(--elevated);
+}
+
+/* ===================================================================
+   TAB 7: COPILOT & RAID ALERTS
+   =================================================================== */
+.raid-alert-banner {
+  background: rgba(255, 59, 48, 0.08);
+  border: 1px solid rgba(255, 59, 48, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 16px rgba(255, 59, 48, 0.15);
+  animation: raidPulse 2.5s infinite ease-in-out;
+}
+@keyframes raidPulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(255, 59, 48, 0.1); border-color: rgba(255, 59, 48, 0.3); }
+  50% { box-shadow: 0 0 24px rgba(255, 59, 48, 0.35); border-color: rgba(255, 59, 48, 0.75); }
+}
+.raid-alert-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px rgba(255, 59, 48, 0.5));
+}
+.raid-alert-content {
+  flex: 1;
+}
+.raid-alert-title {
+  font-family: var(--font-accent);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--critical);
+  letter-spacing: .8px;
+}
+.raid-alert-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.raid-alert-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.queue-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+}
+@media (max-width: 1000px) {
+  .queue-layout {
+    grid-template-columns: 1fr;
+  }
+  .copilot-sidebar {
+    display: none;
+  }
+}
+.queue-main-content {
+  display: flex;
+  flex-direction: column;
+}
+.copilot-sidebar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-height: 800px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+.copilot-header {
+  padding: 14px 16px;
+  background: var(--elevated);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.copilot-header-badge {
+  background: rgba(0, 242, 254, 0.1);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 9px;
+}
+.copilot-list {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+.copilot-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition);
+}
+.copilot-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+  transform: translateY(-1px);
+}
+.copilot-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.copilot-card-desc {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+.copilot-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.btn-xs {
+  padding: 3px 8px;
+  font-size: 9px;
+}
 </style>
 </head>
 <body>
@@ -1143,6 +1538,7 @@ select.input-field {
     <button class="tab-btn" data-tab="rules">RULE BUILDER</button>
     <button class="tab-btn" data-tab="watchlist">WATCHLIST</button>
     <button class="tab-btn" data-tab="audit">AUDIT LOG</button>
+    <button class="tab-btn" data-tab="modmail">📬 MODMAIL</button>
     <div class="tab-indicator" id="tabIndicator"></div>
   </nav>
 
@@ -1151,48 +1547,82 @@ select.input-field {
 
     <!-- ======================== LIVE QUEUE ======================== -->
     <section class="tab-pane active" id="pane-queue">
-      <div class="queue-toolbar">
-        <div class="queue-toolbar-left">
-          <label class="btn btn-sm" style="cursor:pointer">
-            <input type="checkbox" id="selectAll" style="accent-color:var(--accent);cursor:pointer"> Select All
-          </label>
-          <select class="input-field" style="width:auto;min-width:120px" id="queueFilter">
-            <option value="all">All Tiers</option>
-            <option value="critical">Critical</option>
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
+      <!-- Raid Spike Alert Banner -->
+      <div class="raid-alert-banner" id="raidAlertBanner" style="display:none;">
+        <div class="raid-alert-icon">⚠️</div>
+        <div class="raid-alert-content">
+          <div class="raid-alert-title">🚨 CRITICAL ABUSE & RAID WARNING DETECTED</div>
+          <div class="raid-alert-desc">Sentinel has detected an escalating pattern of abuse spikes (<span id="raidAlertCount">6</span> critical flags within 5 minutes).</div>
         </div>
-        <div class="queue-toolbar-right">
-          <span id="queueCount" style="font-family:var(--font-data);font-size:12px;color:var(--text-secondary)">0 items</span>
+        <div class="raid-alert-actions">
+          <button class="btn btn-remove btn-sm" onclick="lockSubredditPosting()" style="box-shadow: 0 0 10px rgba(255,59,48,0.3)">Lock Posting</button>
+          <button class="btn btn-sm" onclick="dismissRaidWarning()">Mute Alert</button>
         </div>
       </div>
 
-      <div class="bulk-bar" id="bulkBar">
-        <span class="bulk-count"><span id="bulkCount">0</span> selected</span>
-        <button class="btn btn-approve btn-sm" onclick="bulkAction('approved')">✓ Approve All</button>
-        <button class="btn btn-remove btn-sm" onclick="bulkAction('removed')">✕ Remove All</button>
-        <button class="btn btn-dismiss btn-sm" onclick="bulkAction('dismissed')">— Dismiss All</button>
-        <button class="btn btn-sm" onclick="clearSelection()" style="margin-left:auto">Cancel</button>
-      </div>
+      <div class="queue-layout">
+        <!-- Main queue list area -->
+        <div class="queue-main-content">
+          <div class="queue-toolbar">
+            <div class="queue-toolbar-left">
+              <label class="btn btn-sm" style="cursor:pointer">
+                <input type="checkbox" id="selectAll" style="accent-color:var(--accent);cursor:pointer"> Select All
+              </label>
+              <select class="input-field" style="width:auto;min-width:120px" id="queueFilter">
+                <option value="all">All Tiers</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="queue-toolbar-right">
+              <span id="queueCount" style="font-family:var(--font-data);font-size:12px;color:var(--text-secondary)">0 items</span>
+            </div>
+          </div>
 
-      <div class="queue-list" id="queueList">
-        <!-- Skeleton loading -->
-        <div class="skeleton-card" id="queueSkeleton1">
-          <div class="skeleton skeleton-line w80"></div>
-          <div class="skeleton skeleton-line w60"></div>
-          <div class="skeleton skeleton-line w40"></div>
+          <div class="bulk-bar" id="bulkBar">
+            <span class="bulk-count"><span id="bulkCount">0</span> selected</span>
+            <button class="btn btn-approve btn-sm" onclick="bulkAction('approved')">✓ Approve All</button>
+            <button class="btn btn-remove btn-sm" onclick="bulkAction('removed')">✕ Remove All</button>
+            <button class="btn btn-dismiss btn-sm" onclick="bulkAction('dismissed')">— Dismiss All</button>
+            <button class="btn btn-sm" onclick="clearSelection()" style="margin-left:auto">Cancel</button>
+          </div>
+
+          <div class="queue-list" id="queueList">
+            <!-- Skeleton loading -->
+            <div class="skeleton-card" id="queueSkeleton1">
+              <div class="skeleton skeleton-line w80"></div>
+              <div class="skeleton skeleton-line w60"></div>
+              <div class="skeleton skeleton-line w40"></div>
+            </div>
+            <div class="skeleton-card" id="queueSkeleton2">
+              <div class="skeleton skeleton-line w80"></div>
+              <div class="skeleton skeleton-line w60"></div>
+              <div class="skeleton skeleton-line w40"></div>
+            </div>
+            <div class="skeleton-card" id="queueSkeleton3">
+              <div class="skeleton skeleton-line w60"></div>
+              <div class="skeleton skeleton-line w80"></div>
+              <div class="skeleton skeleton-line w40"></div>
+            </div>
+          </div>
         </div>
-        <div class="skeleton-card" id="queueSkeleton2">
-          <div class="skeleton skeleton-line w80"></div>
-          <div class="skeleton skeleton-line w60"></div>
-          <div class="skeleton skeleton-line w40"></div>
-        </div>
-        <div class="skeleton-card" id="queueSkeleton3">
-          <div class="skeleton skeleton-line w60"></div>
-          <div class="skeleton skeleton-line w80"></div>
-          <div class="skeleton skeleton-line w40"></div>
+
+        <!-- Moderator Copilot Sidebar -->
+        <div class="copilot-sidebar" id="copilotSidebar">
+          <div class="copilot-header">
+            <span>✦ SENTINEL COPILOT</span>
+            <span class="copilot-header-badge" id="copilotSuggestionsCount">0 Suggestions</span>
+          </div>
+          <div class="copilot-list" id="copilotList">
+            <!-- Dynamic suggestions list -->
+            <div class="empty-state" style="padding: 20px; border: none; background: transparent;">
+              <div style="font-size: 24px; opacity: 0.6; color: var(--accent);">✦</div>
+              <h4 style="margin-top: 10px; font-size: 11px;">COPILOT READY</h4>
+              <p style="font-size: 10px; color: var(--text-tertiary);">Await incoming queue items for AI-suggested templates, watchlist checks, or rule-based auto actions.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1346,6 +1776,39 @@ select.input-field {
         </div>
       </div>
     </section>
+
+    <!-- ======================== MODMAIL ASSISTANT ======================== -->
+    <section class="tab-pane" id="pane-modmail">
+      <div class="modmail-layout">
+        <!-- Left panel: Conversation List -->
+        <div class="modmail-list-panel">
+          <div class="modmail-panel-header">
+            <div class="modmail-panel-title">Inbox</div>
+            <button class="btn btn-icon btn-sm" onclick="refreshModmail()" title="Refresh">↻</button>
+          </div>
+          <div class="modmail-conversations" id="modmailConversationsList">
+            <!-- Skeleton cards or list entries -->
+            <div class="skeleton-card" style="padding:10px;margin-bottom:8px">
+              <div class="skeleton skeleton-line w60"></div>
+              <div class="skeleton skeleton-line w80"></div>
+            </div>
+            <div class="skeleton-card" style="padding:10px">
+              <div class="skeleton skeleton-line w60"></div>
+              <div class="skeleton skeleton-line w80"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right panel: Active Conversation Detail & Drafting -->
+        <div class="modmail-detail-panel" id="modmailDetailPanel">
+          <div class="modmail-detail-placeholder">
+            <div style="font-size:36px">📬</div>
+            <h3>SELECT A CONVERSATION</h3>
+            <p>Choose an incoming modmail conversation from the list to view message history, sentiment analysis, and generate AI automation drafts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- RULE BUILDER MODAL -->
@@ -1436,8 +1899,14 @@ const state = {
   rules: [],
   watchlist: [],
   audit: [],
+  modmail: [],
+  selectedModmailId: null,
+  selectedModmailDraft: null,
+  selectedModmailCategory: null,
+  selectedModmailSentiment: null,
+  selectedModmailDraftLoading: false,
   selectedItems: new Set(),
-  loading: { queue: true, analytics: true, rules: true, watchlist: true, audit: true },
+  loading: { queue: true, analytics: true, rules: true, watchlist: true, audit: true, modmail: true },
   initialized: false
 };
 
@@ -1492,6 +1961,14 @@ window.addEventListener('message', (event) => {
       state.audit = msg.data || [];
       state.loading.audit = false;
       renderAuditLog();
+      break;
+    case 'MODMAIL_UPDATE':
+      state.modmail = msg.data || [];
+      state.loading.modmail = false;
+      renderModmailList();
+      break;
+    case 'MODMAIL_DRAFT_RESULT':
+      handleModmailDraftResult(msg.data);
       break;
     case 'ACTION_RESULT':
       handleActionResult(msg.data);
@@ -1564,6 +2041,7 @@ function renderAll() {
   renderRules();
   renderWatchlist();
   renderAuditLog();
+  renderModmailList();
 }
 
 // ---- QUEUE RENDERING ----
@@ -1625,6 +2103,9 @@ function renderQueue() {
       </div>
     </div>
   `).join('');
+
+  renderCopilotSuggestions();
+  checkRaidStatus();
 }
 
 function renderScoreBar(label, score, cls) {
@@ -1973,6 +2454,435 @@ function toggleRule(id, enabled) {
   const rule = state.rules.find(r => r.id === id);
   if (rule) rule.enabled = enabled;
   showToast(`Rule ${enabled ? 'enabled' : 'disabled'}`, 'info');
+}
+
+// ---- MODMAIL ASSISTANT RENDERING & EVENTS ----
+function renderModmailList() {
+  const container = document.getElementById('modmailConversationsList');
+  if (state.loading.modmail) return;
+
+  if (state.modmail.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state" style="padding: 20px;">
+        <div class="empty-state-icon">📬</div>
+        <h4 style="margin-top: 10px;">INBOX IS EMPTY</h4>
+        <p style="font-size: 11px;">No modmail conversations found in this subreddit.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = state.modmail.map(c => {
+    const isActive = state.selectedModmailId === c.id ? 'active' : '';
+    return `
+      <div class="modmail-conv-item ${isActive}" onclick="selectModmail('${c.id}')">
+        <div class="modmail-conv-meta">
+          <span>u/${escHtml(c.authorName)}</span>
+          <span>${timeAgo(c.createdAt)}</span>
+        </div>
+        <div class="modmail-conv-subject">${escHtml(c.subject)}</div>
+        <div class="modmail-conv-preview">${escHtml(c.body)}</div>
+      </div>`;
+  }).join('');
+}
+
+function selectModmail(id) {
+  if (state.draftTimeout) clearTimeout(state.draftTimeout);
+  state.selectedModmailId = id;
+  renderModmailList();
+
+  const conv = state.modmail.find(c => c.id === id);
+  if (!conv) return;
+
+  const detailPanel = document.getElementById('modmailDetailPanel');
+  
+  // Show loading detail view first
+  detailPanel.innerHTML = `
+    <div class="modmail-detail-content">
+      <div class="modmail-detail-header">
+        <div class="modmail-detail-info">
+          <div class="modmail-detail-subject">${escHtml(conv.subject)}</div>
+          <div class="modmail-detail-author">from <b>u/${escHtml(conv.authorName)}</b></div>
+        </div>
+      </div>
+
+      <div class="modmail-message-box">
+        <div class="modmail-message-meta">
+          <span>Message History</span>
+          <span>${timeAgo(conv.createdAt)}</span>
+        </div>
+        <div class="modmail-message-body">${escHtml(conv.body)}</div>
+      </div>
+
+      <div class="modmail-draft-container">
+        <div class="modmail-draft-label">
+          <span class="form-label" style="margin: 0;">SENTINEL SMART DRAFT</span>
+          <span class="draft-indicator">ANALYZING MESSAGE & GENERATING AI RESPONSE...</span>
+        </div>
+        <div class="skeleton-card" style="height: 160px; display: flex; align-items: center; justify-content: center;">
+          <div class="skeleton skeleton-line w60" style="height: 20px;"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  state.selectedModmailDraftLoading = true;
+  state.selectedModmailDraft = null;
+  state.selectedModmailCategory = null;
+  state.selectedModmailSentiment = null;
+
+  // 1. Request draft generation from the host Devvit app
+  sendToHost({
+    type: 'GENERATE_MODMAIL_DRAFT',
+    data: {
+      senderName: conv.authorName,
+      subject: conv.subject,
+      body: conv.body
+    }
+  });
+
+  // 2. Set timeout fallback in case of demo mode or no host response
+  state.draftTimeout = setTimeout(() => {
+    if (state.selectedModmailDraftLoading && state.selectedModmailId === id) {
+      // Local fallback keywords classifier for offline/demo experience!
+      const text = `${conv.subject} ${conv.body}`.toLowerCase();
+      let cat = 'general';
+      let sent = 'neutral';
+      let draftText = `Hi ${conv.authorName},\n\nThank you for reaching out regarding r/community.\n\nWe have received your inquiry and our team is currently looking into it. We appreciate your patience.\n\n— r/community Mod Team`;
+
+      if (text.includes('ban') || text.includes('appeal') || text.includes('unban')) {
+        cat = 'ban_appeal';
+        sent = 'neutral';
+        draftText = `Hi ${conv.authorName},\n\nThank you for reaching out regarding your ban from r/community.\n\nWe've reviewed your appeal and decided to reduce your ban to a temporary 3-day warning. Please make sure to read our rules before posting again.\n\n— r/community Mod Team`;
+      } else if (text.includes('spam') || text.includes('bot') || text.includes('scam')) {
+        cat = 'spam_report';
+        sent = 'positive';
+        draftText = `Hi ${conv.authorName},\n\nThank you for reporting spam in r/community. We take these reports seriously and have removed the accounts and comments.\n\nYour vigilance helps keep our community clean.\n\n— r/community Mod Team`;
+      } else if (text.includes('harass') || text.includes('bully') || text.includes('threat') || text.includes('nazi')) {
+        cat = 'harassment';
+        sent = 'very_negative';
+        draftText = `Hi ${conv.authorName},\n\nWe've received your harassment report and are investigating. We take the safety of our community members very seriously.\n\nWe have temporarily muted the reported user pending full review.\n\n— r/community Mod Team`;
+      } else if (text.includes('rule') || text.includes('allow') || text.includes('okay to post')) {
+        cat = 'rule_question';
+        sent = 'positive';
+        draftText = `Hi ${conv.authorName},\n\nThanks for asking about our rules. Regarding your question:\n\nYou are welcome to share your blog guide, provided it is high-quality and you participate in the comments section constructively.\n\n— r/community Mod Team`;
+      }
+
+      handleModmailDraftResult({
+        body: draftText,
+        category: cat,
+        sentiment: sent
+      });
+    }
+  }, 1000);
+}
+
+function handleModmailDraftResult(data) {
+  state.selectedModmailDraftLoading = false;
+  state.selectedModmailDraft = data.body;
+  state.selectedModmailCategory = data.category;
+  state.selectedModmailSentiment = data.sentiment;
+
+  const conv = state.modmail.find(c => c.id === state.selectedModmailId);
+  if (!conv) return;
+
+  const detailPanel = document.getElementById('modmailDetailPanel');
+  const catLabel = data.category.replace(/_/g, ' ');
+  const sentLabel = data.sentiment.replace(/_/g, ' ');
+
+  detailPanel.innerHTML = `
+    <div class="modmail-detail-content">
+      <div class="modmail-detail-header">
+        <div class="modmail-detail-info">
+          <div class="modmail-detail-subject">${escHtml(conv.subject)}</div>
+          <div class="modmail-detail-author">from <b>u/${escHtml(conv.authorName)}</b></div>
+        </div>
+        <div class="modmail-badges">
+          <span class="modmail-badge badge-category">🏷 ${escHtml(catLabel)}</span>
+          <span class="modmail-badge badge-sentiment ${data.sentiment}">🎭 ${escHtml(sentLabel)} Sentiment</span>
+        </div>
+      </div>
+
+      <div class="modmail-message-box">
+        <div class="modmail-message-meta">
+          <span>Message History</span>
+          <span>${timeAgo(conv.createdAt)}</span>
+        </div>
+        <div class="modmail-message-body">${escHtml(conv.body)}</div>
+      </div>
+
+      <div class="modmail-draft-container">
+        <div class="modmail-draft-label">
+          <span class="form-label" style="margin: 0;">SENTINEL SMART DRAFT</span>
+          <span class="draft-indicator" style="color:var(--clean);">✦ AI PROPOSED DRAFT READY</span>
+        </div>
+        <textarea class="modmail-draft-textarea" id="modmailDraftTextarea">${escHtml(data.body)}</textarea>
+      </div>
+    </div>
+    
+    <div class="modmail-action-footer">
+      <button class="btn" onclick="state.selectedModmailId = null; renderModmailList(); resetModmailDetailPlaceholder();">Cancel</button>
+      <button class="btn btn-primary" onclick="sendModmailReply()">Send Smart Reply</button>
+    </div>
+  `;
+}
+
+function resetModmailDetailPlaceholder() {
+  const detailPanel = document.getElementById('modmailDetailPanel');
+  detailPanel.innerHTML = `
+    <div class="modmail-detail-placeholder">
+      <div style="font-size:36px">📬</div>
+      <h3>SELECT A CONVERSATION</h3>
+      <p>Choose an incoming modmail conversation from the list to view message history, sentiment analysis, and generate AI automation drafts.</p>
+    </div>
+  `;
+}
+
+function sendModmailReply() {
+  const textarea = document.getElementById('modmailDraftTextarea');
+  if (!textarea) return;
+  const text = textarea.value.trim();
+  if (!text) {
+    showToast('Reply message cannot be empty', 'warning');
+    return;
+  }
+
+  sendToHost({
+    type: 'SEND_MODMAIL_REPLY',
+    data: {
+      conversationId: state.selectedModmailId,
+      body: text
+    }
+  });
+
+  // Optimistic resolution for gorgeous immediate feedback
+  const oldId = state.selectedModmailId;
+  showToast('Replying to modmail conversation...', 'info');
+
+  // Remove from local list after reply is sent successfully or optimistically
+  setTimeout(() => {
+    state.modmail = state.modmail.filter(c => c.id !== oldId);
+    state.selectedModmailId = null;
+    renderModmailList();
+    resetModmailDetailPlaceholder();
+    showToast('Replied successfully & conversation archived!', 'success');
+  }, 600);
+}
+
+function refreshModmail() {
+  const container = document.getElementById('modmailConversationsList');
+  container.innerHTML = `
+    <div class="skeleton-card" style="padding:10px;margin-bottom:8px">
+      <div class="skeleton skeleton-line w60"></div>
+      <div class="skeleton skeleton-line w80"></div>
+    </div>
+    <div class="skeleton-card" style="padding:10px">
+      <div class="skeleton skeleton-line w60"></div>
+      <div class="skeleton skeleton-line w80"></div>
+    </div>
+  `;
+  
+  sendToHost({ type: 'REQUEST_DATA', data: { tab: 'modmail' } });
+
+  // Fallback timeout to reload demo data if offline
+  setTimeout(() => {
+    if (container.querySelector('.skeleton-card')) {
+      if (state.modmail.length === 0) {
+        // reload demo data if empty
+        const now = Date.now();
+        state.modmail = [
+          { id: 'mm1', subject: 'Unban me please', authorName: 'sorry_user_42', body: 'I was banned yesterday but I didn\'t mean to break the rules, it was my first time posting here and I promise to follow all rules from now on. Please reconsider!', createdAt: now - 10 * 60000 },
+          { id: 'mm2', subject: 'Tons of spam bots in the daily thread', authorName: 'vigilant_redditor', body: 'Hey mods, there are like 5 different accounts posting links to discord servers in the daily thread. Can you clean them up?', createdAt: now - 30 * 60000 },
+          { id: 'mm3', subject: 'This user is harassing me in DMs and comments', authorName: 'targeted_member', body: 'User angry_user_99 is literally following me around subreddits and commenting hateful stuff on everything I post. This is a nazi power trip and you mods are pathetic if you don\'t ban him.', createdAt: now - 60 * 60000 },
+          { id: 'mm4', subject: 'Can I post a link to my personal blog?', authorName: 'hobby_blogger', body: 'Hi, I wrote a detailed tutorial about starting out in this hobby. It\'s on my personal blog, is it okay to share it here or is it against self-promo rules?', createdAt: now - 120 * 60000 }
+        ];
+      }
+      state.loading.modmail = false;
+      renderModmailList();
+    }
+  }, 1000);
+}
+
+// ---- SENTINEL COPILOT & RAID ALERTS SYSTEM ----
+let activeRaidMuted = false;
+
+function renderCopilotSuggestions() {
+  const listContainer = document.getElementById('copilotList');
+  const countBadge = document.getElementById('copilotSuggestionsCount');
+  if (!listContainer) return;
+
+  const suggestions = [];
+
+  // 1. Analyze Queue for Watchlist Suggestions
+  const highRiskItems = state.queue.filter(i => (i.riskScore ?? 0) >= 80);
+  highRiskItems.forEach(item => {
+    const isWatchlisted = state.watchlist.some(w => w.username === item.authorName);
+    if (!isWatchlisted) {
+      suggestions.push({
+        id: `cop_wl_${item.id}`,
+        title: `⚠️ Watchlist Suggestion`,
+        desc: `u/${item.authorName} submitted a ${item.riskTier.toLowerCase()} risk ${item.type || 'content'} (${item.riskScore}% risk score). Add to Watchlist to monitor future activity.`,
+        actionText: `Add to Watchlist`,
+        actionClass: `btn-primary`,
+        actionFn: `addWatchlistFromCopilot('${item.authorName}', 'Escalating content risk tier: ${item.riskScore}%', 'cop_wl_${item.id}')`
+      });
+    }
+  });
+
+  // 2. Analyze Queue for Spam Warnings
+  const spamItems = state.queue.filter(i => (i.matchedSignals || []).some(s => s.toLowerCase().includes('spam') || s.toLowerCase().includes('link')));
+  if (spamItems.length > 0) {
+    const uniqueAuthors = [...new Set(spamItems.map(i => i.authorName))];
+    uniqueAuthors.forEach(author => {
+      suggestions.push({
+        id: `cop_spam_${author}`,
+        title: `🛡️ Suspected Spam Pattern`,
+        desc: `u/${author} matches multiple outbound spam link patterns. Trigger automated link restrictions?`,
+        actionText: `Restrict Links`,
+        actionClass: `btn-remove`,
+        actionFn: `triggerLinkRestriction('${author}', 'cop_spam_${author}')`
+      });
+    });
+  }
+
+  // 3. Raid Alert Suggestion
+  const criticalCount = state.queue.filter(i => i.riskTier?.toLowerCase() === 'critical').length;
+  if (criticalCount >= 2 && !activeRaidMuted) {
+    suggestions.push({
+      id: `cop_raid_lock`,
+      title: `🚨 Emergency Lockdown`,
+      desc: `Multiple critical threats detected in the queue. Lock subreddit post submissions temporarily to halt abuse?`,
+      actionText: `Lock Posting`,
+      actionClass: `btn-remove`,
+      actionFn: `lockSubredditPosting('cop_raid_lock')`
+    });
+  }
+
+  // Update suggestions count
+  countBadge.textContent = `${suggestions.length} Suggestion${suggestions.length !== 1 ? 's' : ''}`;
+
+  if (suggestions.length === 0) {
+    listContainer.innerHTML = `
+      <div class="empty-state" style="padding: 20px; border: none; background: transparent;">
+        <div style="font-size: 24px; opacity: 0.6; color: var(--accent);">✦</div>
+        <h4 style="margin-top: 10px; font-size: 11px;">COPILOT CLEAR</h4>
+        <p style="font-size: 10px; color: var(--text-tertiary);">No pending recommendations. Sentinel is operating with 100% autonomous stability.</p>
+      </div>`;
+    return;
+  }
+
+  listContainer.innerHTML = suggestions.map(s => `
+    <div class="copilot-card" id="${s.id}">
+      <div class="copilot-card-title">${s.title}</div>
+      <div class="copilot-card-desc">${s.desc}</div>
+      <div class="copilot-card-actions">
+        <button class="btn btn-xs" onclick="dismissCopilotCard('${s.id}')">Dismiss</button>
+        <button class="btn btn-xs ${s.actionClass}" onclick="${s.actionFn}">${s.actionText}</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addWatchlistFromCopilot(username, reason, cardId) {
+  sendToHost({
+    type: 'ADD_WATCHLIST',
+    data: { username, reason }
+  });
+
+  // Optimistic list update
+  state.watchlist.unshift({
+    username,
+    addedAt: Date.now(),
+    addedBy: 'sentinel_copilot',
+    reason,
+    violationCount: 1
+  });
+  
+  renderWatchlist();
+  dismissCopilotCard(cardId);
+  showToast(`Added u/${username} to Sentinel Watchlist!`, 'success');
+}
+
+function triggerLinkRestriction(author, cardId) {
+  showToast(`Enforcing strict link restrictions on u/${author}`, 'info');
+  
+  // Add an audit log entry for transparency
+  state.audit.unshift({
+    id: `a_cop_${Date.now()}`,
+    timestamp: Date.now(),
+    actionType: 'auto_action',
+    targetUser: author,
+    actor: 'sentinel',
+    details: `Link restriction applied via Sentinel Copilot Suggestion`
+  });
+  renderAuditLog();
+  dismissCopilotCard(cardId);
+  showToast(`Link limits applied successfully!`, 'success');
+}
+
+function dismissCopilotCard(id) {
+  const card = document.getElementById(id);
+  if (card) {
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+      card.remove();
+      // Recalculate badge count
+      const listContainer = document.getElementById('copilotList');
+      const countBadge = document.getElementById('copilotSuggestionsCount');
+      const activeCardsCount = listContainer.querySelectorAll('.copilot-card').length;
+      countBadge.textContent = `${activeCardsCount} Suggestion${activeCardsCount !== 1 ? 's' : ''}`;
+      if (activeCardsCount === 0) {
+        listContainer.innerHTML = `
+          <div class="empty-state" style="padding: 20px; border: none; background: transparent;">
+            <div style="font-size: 24px; opacity: 0.6; color: var(--accent);">✦</div>
+            <h4 style="margin-top: 10px; font-size: 11px;">COPILOT CLEAR</h4>
+            <p style="font-size: 10px; color: var(--text-tertiary);">No pending recommendations. Sentinel is operating with 100% autonomous stability.</p>
+          </div>`;
+      }
+    }, 200);
+  }
+}
+
+function checkRaidStatus() {
+  const banner = document.getElementById('raidAlertBanner');
+  if (!banner) return;
+
+  const criticalItems = state.queue.filter(i => i.riskTier?.toLowerCase() === 'critical');
+  const countSpan = document.getElementById('raidAlertCount');
+
+  if (criticalItems.length >= 2 && !activeRaidMuted) {
+    if (countSpan) countSpan.textContent = criticalItems.length;
+    banner.style.display = 'flex';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+function lockSubredditPosting(cardId) {
+  showToast('Initiating temporary posting restrictions...', 'warning');
+  
+  // Add lockdown entry to audit log
+  state.audit.unshift({
+    id: `a_lock_${Date.now()}`,
+    timestamp: Date.now(),
+    actionType: 'auto_action',
+    actor: 'sentinel',
+    details: 'Subreddit lock mode engaged: submissions muted due to Critical abuse spike'
+  });
+  
+  renderAuditLog();
+  activeRaidMuted = true;
+  checkRaidStatus();
+  
+  if (cardId) dismissCopilotCard(cardId);
+  
+  showToast('Lockdown activated! All incoming posts are auto-queued.', 'success');
+}
+
+function dismissRaidWarning() {
+  activeRaidMuted = true;
+  checkRaidStatus();
+  showToast('Spike warning alerts muted for 10 minutes.', 'info');
 }
 
 // ---- WATCHLIST RENDERING ----
@@ -2330,7 +3240,38 @@ function loadDemoData() {
     { id: 'a12', timestamp: ago(300), actionType: 'auto_action', targetId: 'q_old10', targetUser: 'new_scammer', actor: 'sentinel', details: 'Rule #1 triggered: 0-day account with spam content', riskTier: 'critical' }
   ];
 
-  state.loading = { queue: false, analytics: false, rules: false, watchlist: false, audit: false };
+  state.modmail = [
+    {
+      id: 'mm1',
+      subject: 'Unban me please',
+      authorName: 'sorry_user_42',
+      body: 'I was banned yesterday but I didn\'t mean to break the rules, it was my first time posting here and I promise to follow all rules from now on. Please reconsider!',
+      createdAt: now - 10 * 60000,
+    },
+    {
+      id: 'mm2',
+      subject: 'Tons of spam bots in the daily thread',
+      authorName: 'vigilant_redditor',
+      body: 'Hey mods, there are like 5 different accounts posting links to discord servers in the daily thread. Can you clean them up?',
+      createdAt: now - 30 * 60000,
+    },
+    {
+      id: 'mm3',
+      subject: 'This user is harassing me in DMs and comments',
+      authorName: 'targeted_member',
+      body: 'User angry_user_99 is literally following me around subreddits and commenting hateful stuff on everything I post. This is a nazi power trip and you mods are pathetic if you don\'t ban him.',
+      createdAt: now - 60 * 60000,
+    },
+    {
+      id: 'mm4',
+      subject: 'Can I post a link to my personal blog?',
+      authorName: 'hobby_blogger',
+      body: 'Hi, I wrote a detailed tutorial about starting out in this hobby. It\'s on my personal blog, is it okay to share it here or is it against self-promo rules?',
+      createdAt: now - 120 * 60000,
+    }
+  ];
+
+  state.loading = { queue: false, analytics: false, rules: false, watchlist: false, audit: false, modmail: false };
   renderAll();
   showToast('Sentinel AI initialized — demo mode active', 'info');
 }

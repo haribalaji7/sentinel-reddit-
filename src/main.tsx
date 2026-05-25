@@ -451,6 +451,26 @@ Devvit.addTrigger({
 });
 
 // ─────────────────────────────────────────────
+// Trigger: ModMail
+// ─────────────────────────────────────────────
+
+Devvit.addTrigger({
+  event: 'ModMail',
+  onEvent: async (_, context) => {
+    try {
+      console.log('Sentinel: Received incoming ModMail event');
+      const subreddit = (await context.reddit.getCurrentSubreddit()).name;
+      if (!subreddit) return;
+
+      const today = new Date().toISOString().slice(0, 10);
+      await incrementCounter(context.kvStore, subreddit, 'total_modmails_received', today);
+    } catch (error) {
+      console.error('Sentinel: Error handling ModMail event:', error);
+    }
+  },
+});
+
+// ─────────────────────────────────────────────
 // Scheduler Job
 // ─────────────────────────────────────────────
 
@@ -698,6 +718,29 @@ Devvit.addCustomPostType({
                   webView.postMessage({ type: 'AUDIT_UPDATE', data: auditLog });
                   break;
                 }
+                case 'modmail': {
+                  try {
+                    const resp = await context.reddit.modMail.getConversations({ limit: 10, state: 'all' });
+                    const conversations = Object.values(resp.conversations || {}).map((c: any) => {
+                      const messages = Object.values(c.messages || {}).sort(
+                        (a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                      );
+                      const firstMsg: any = messages[0] || {};
+                      return {
+                        id: c.id,
+                        subject: c.subject || 'No Subject',
+                        authorName: c.participant?.name || firstMsg.author?.name || 'unknown',
+                        body: firstMsg.body || '',
+                        createdAt: c.lastUpdated ? new Date(c.lastUpdated).getTime() : Date.now(),
+                      };
+                    });
+                    webView.postMessage({ type: 'MODMAIL_UPDATE', data: conversations });
+                  } catch (err) {
+                    console.error('Sentinel: Failed to fetch live modmail:', err);
+                    webView.postMessage({ type: 'MODMAIL_UPDATE', data: [] });
+                  }
+                  break;
+                }
               }
               break;
             }
@@ -902,6 +945,59 @@ Devvit.addCustomPostType({
                 type: 'TOAST',
                 data: { message: 'Audit log ready for export', level: 'info' },
               });
+              break;
+            }
+
+            case 'GENERATE_MODMAIL_DRAFT': {
+              const { senderName, subject, body } = message.data;
+              try {
+                const draftResult = await generateDraft(context.kvStore, subreddit, senderName, subject, body);
+                webView.postMessage({
+                  type: 'MODMAIL_DRAFT_RESULT',
+                  data: {
+                    body: draftResult.draft,
+                    category: draftResult.category,
+                    sentiment: draftResult.sentiment.label,
+                  },
+                });
+              } catch (err) {
+                console.error('Sentinel: Failed to generate modmail draft:', err);
+                webView.postMessage({
+                  type: 'TOAST',
+                  data: { message: 'Failed to generate AI draft', level: 'error' },
+                });
+              }
+              break;
+            }
+
+            case 'SEND_MODMAIL_REPLY': {
+              const { conversationId, body } = message.data;
+              try {
+                await context.reddit.modMail.reply({
+                  conversationId,
+                  body,
+                });
+                
+                await addAuditEntry(context.kvStore, subreddit, {
+                  id: `audit_mm_${Date.now()}`,
+                  timestamp: Date.now(),
+                  actionType: 'manual_dismiss',
+                  targetId: conversationId,
+                  actor: currentUser,
+                  details: `Sent AI response via dashboard`,
+                });
+
+                webView.postMessage({
+                  type: 'TOAST',
+                  data: { message: 'Modmail reply sent successfully!', level: 'success' },
+                });
+              } catch (err) {
+                console.error('Sentinel: Failed to send modmail reply:', err);
+                webView.postMessage({
+                  type: 'TOAST',
+                  data: { message: 'Failed to send reply via Reddit API', level: 'error' },
+                });
+              }
               break;
             }
           }
