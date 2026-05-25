@@ -1,0 +1,25 @@
+{
+  "name": "reddit-sentinel-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered moderation triage for Reddit communities. Auto-classifies content risk, enforces custom rules, and proves its impact — all inside Reddit.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/main.tsx",
+  "scripts": {
+    "dev": "devvit playtest",
+    "build": "devvit build",
+    "upload": "devvit upload",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@devvit/public-api": "0.11.x"
+  },
+  "devDependencies": {
+    "@devvit/tsconfig": "0.11.x",
+    "typescript": "5.x"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "@devvit/tsconfig/base.json",
+  "compilerOptions": {
+    "types": [],
+    "outDir": "dist",
+    "rootDir": "."
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "webroot"]
+}

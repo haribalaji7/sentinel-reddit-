@@ -1,0 +1,12 @@
+# Reddit Sentinel AI — Devvit App Configuration
+# Hackathon: Reddit Mod Tools & Migrated Apps (mod-tools-migration.devpost.com)
+
+name: reddit-sentinel-ai
+version: 0.0.1
+
+api: reddit
+configuration:
+  redditAPI: true
+  kvStore: true
+  redis: true
+  media: false
