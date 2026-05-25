@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "buildCommand": "echo 'Building static dashboard...'",
-  "outputDirectory": "webroot",
-  "cleanUrls": true
-}

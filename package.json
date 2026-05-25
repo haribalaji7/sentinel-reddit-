@@ -8,7 +8,7 @@
   "main": "src/main.tsx",
   "scripts": {
     "dev": "devvit playtest",
-    "build": "devvit build",
+    "build": "npx devvit build",
     "upload": "devvit upload",
     "typecheck": "tsc --noEmit"
   },
@@ -16,6 +16,7 @@
     "@devvit/public-api": "0.11.x"
   },
   "devDependencies": {
+    "@devvit/cli": "0.11.x",
     "@devvit/tsconfig": "0.11.x",
     "typescript": "5.x"
   },
